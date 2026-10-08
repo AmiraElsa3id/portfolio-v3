@@ -6,6 +6,7 @@ import { CV_URL, profile } from "@/content/profile";
 import { useSummary } from "@/components/summary/SummaryProvider";
 import { Icon } from "@/components/ui/Icon";
 import { MobileMenu } from "./MobileMenu";
+import { VersionMenu } from "./VersionMenu";
 
 /* Nav — ported from index.html §NAV. Transparent over the hero, solid after
    scrolling (CSS scroll timeline). The burger opens the full-screen menu. */
@@ -41,6 +42,11 @@ export function Nav() {
               >
                 20-sec summary
               </button>
+              {/* hide-sm: at ≤600px the bar has no room for it, so the
+                  version switcher moves into the burger menu instead. */}
+              <div className="hide-sm">
+                <VersionMenu />
+              </div>
               <a
                 className="navbtn navbtn--solid"
                 href={CV_URL}

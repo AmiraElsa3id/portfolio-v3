@@ -6,6 +6,7 @@ import { CV_URL, profile } from "@/content/profile";
 import { useSummary } from "@/components/summary/SummaryProvider";
 import { Icon } from "@/components/ui/Icon";
 import { LocalClock } from "@/components/interactions/LocalClock";
+import { VersionMenu } from "./VersionMenu";
 
 /*
   MobileMenu — ported from index.html §MOBILE MENU + main.js §3.
@@ -76,6 +77,8 @@ export function MobileMenu({ open, onClose }) {
             Download CV
           </a>
         </div>
+        {/* Keyed on `open` so the version popover never survives a close. */}
+        <VersionMenu key={String(open)} placement="top" />
         <span className="label">
           {profile.locationShort} · <LocalClock /> local · {profile.contact.email}
         </span>

@@ -14,7 +14,7 @@ table is the plan for splitting it into CSS Modules later, if you want to.
 | `assets/css/components.css` | `app/styles/components.css` | verbatim |
 | `assets/css/sections.css` | `app/styles/sections.css` | verbatim |
 | `assets/css/responsive.css` | `app/styles/responsive.css` | verbatim |
-| — | `app/styles/nextjs-additions.css` | the **only** deltas: `<dialog>` styling + flexible gallery height |
+| — | `app/styles/nextjs-additions.css` | the **only** deltas: `<dialog>` styling + flexible gallery height + `.ver` version switcher |
 
 All five global stylesheets are imported in order in `app/layout.js`.
 
@@ -23,7 +23,7 @@ All five global stylesheets are imported in order in `app/layout.js`.
 | CSS block | React component |
 |---|---|
 | 1. `.btn` | `components/ui/Button` usage inside sections (inline `<a className="btn …">`) |
-| 2. `.navbtn`, `.burger` | `components/nav/Nav.js`, `components/nav/MobileMenu.js` |
+| 2. `.navbtn`, `.burger` | `components/nav/Nav.js`, `components/nav/MobileMenu.js`, `components/nav/VersionMenu.js` |
 | 3. `.roll` | `components/nav/Nav.js`, `components/Contact.js` (back-to-top) |
 | 4. `.pulse` | *(not currently used on the page)* |
 | 5. `.chip` / `.tag` / `.badge` | `components/hero/Hero.js`, `components/work/ProjectCard.js` |
@@ -45,12 +45,13 @@ All five global stylesheets are imported in order in `app/layout.js`.
 | 21. `.fab` / `.chat` / `.msg` / `.qchip` | `components/chat/ChatWidget.js` *(Phase 4)* |
 | 22. `.scrim` / `.modal` / `.tgrid` | `components/summary/SummaryModal.js` (native `<dialog class="modal">`) |
 | 23. `.menu` | `components/nav/MobileMenu.js` (native `<dialog class="menu">`) |
+| — `.ver` *(new in the rebuild)* | `components/nav/VersionMenu.js` — see §4 of `nextjs-additions.css` |
 
 ## sections.css → components
 
 | CSS section | React component |
 |---|---|
-| 1. Nav | `components/nav/Nav.js` |
+| 1. Nav | `components/nav/Nav.js` (+ `nav/VersionMenu.js`) |
 | 2. Hero | `components/hero/Hero.js` (+ `hero/AsciiField.js`) |
 | 3. Stack band | `components/StackBand.js` |
 | 4. Stats | `components/Stats.js` |
@@ -83,6 +84,7 @@ All five global stylesheets are imported in order in `app/layout.js`.
 | Data | File |
 |---|---|
 | name, links, location, hero copy | `content/profile.js` |
+| portfolio versions (v3 current, v2, v1 archived) | `content/versions.js` |
 | featured + more builds | `content/projects.js` |
 | themes | `content/themes.js` |
 | stats + stack band | `content/stats.js` |
