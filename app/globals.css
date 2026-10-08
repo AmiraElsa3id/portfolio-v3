@@ -1,49 +1,349 @@
+/* =====================================================================
+   globals.css
+   ---------------------------------------------------------------------
+   Ported from the static site:
+     assets/css/tokens.css  → design tokens (type, layout, motion, layers)
+                              + the four palettes
+     assets/css/base.css    → reset, element defaults, typography helpers
+
+   The only change from the originals: the three font-family tokens now
+   read the next/font/local CSS variables (--font-syne / --font-manrope /
+   --font-jetbrains) that app/layout.js puts on <html>, instead of the raw
+   family names. Everything else is byte-for-byte the original.
+   ===================================================================== */
+
+/* =====================================================================
+   tokens.css — DESIGN TOKENS
+   ===================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---------- Typography --------------------------------------------
+     Syne            → display: names, section titles, big numbers
+     Manrope         → body copy and UI text
+     JetBrains Mono  → labels, metadata, buttons, "engineer" voice      */
+  --font-display: var(--font-syne), "Arial Black", sans-serif;
+  --font-body: var(--font-manrope), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Fluid type scale. See docs/03-typography.md
+     Syne 800 is VERY wide (MOHAMMED ≈ 10.6em, EXPERIENCE ≈ 10.7em), so
+     the biggest headings are sized from their CONTAINER width (cqi
+     units) instead of the viewport — they always fit, never clip.
+     The parent of each such heading has `container-type: inline-size`. */
+  --fs-hero-1: clamp(40px, calc(100cqi / 6.3), 230px); /* AMERA  (≈ 6.0em wide)   */
+  --fs-hero-2: clamp(26px, calc(100cqi / 10.9), 140px); /* MOHAMMED (≈ 10.6em)     */
+  --fs-contact: clamp(64px, 13vw, 210px); /* LET'S TALK. (≈ 4.3em)   */
+  --fs-h2: clamp(24px, min(7.4vw, calc(100cqi / 11)), 120px); /* section titles */
+  --fs-h2-small: clamp(24px, min(4.4vw, calc(100cqi / 11.8)), 68px); /* "More builds"  */
+  --fs-principle: clamp(32px, calc(100cqi / 7.2), 140px); /* FAST / SECURE  */
+  --fs-about: clamp(30px, 4.4vw, 66px); /* about statement           */
+  --fs-stat-xl: clamp(64px, 8vw, 128px); /* "1st"                     */
+  --fs-stat: clamp(48px, 5vw, 80px); /* other stats               */
+  --fs-card-title: clamp(24px, 2.3vw, 34px); /* project card titles       */
+  --fs-job-title: clamp(26px, 3vw, 42px); /* experience role titles    */
+  --fs-lead: clamp(19px, 1.7vw, 23px); /* hero intro paragraph      */
+  --fs-body-lg: 17px;
+  --fs-body: 16px;
+  --fs-small: 15px;
+  --fs-label: 13px; /* mono uppercase labels     */
+  --fs-micro: 12px; /* tags, chips               */
+
+  /* Tracking: big display type is tightened, mono labels are opened up  */
+  --track-hero: -0.05em;
+  --track-display: -0.03em;
+  --track-label: 0.08em;
+
+  /* ---------- Layout ---------------------------------------------- */
+  --maxw: 1440px; /* content max width            */
+  --gut: clamp(16px, 4vw, 48px); /* side gutter (16px on phones) */
+  --sp-section: clamp(80px, 10vw, 140px); /* vertical rhythm between sections */
+  --r: 6px; /* the ONE corner radius for cards/visuals */
+  --r-pill: 999px; /* buttons, chips               */
+
+  /* ---------- Motion ----------------------------------------------- */
+  --ease: cubic-bezier(0.7, 0, 0.2, 1); /* "snappy" in-out: fills, wipes */
+  --out: cubic-bezier(0.16, 1, 0.3, 1); /* "expo out": entrances, hovers */
+  --dur-fast: 0.25s;
+  --dur: 0.45s;
+  --dur-slow: 0.9s;
+
+  /* ---------- Layers (z-index scale) -------------------------------- */
+  --z-nav: 50;
+  --z-progress: 60;
+  --z-fab: 65;
+  --z-chat: 66;
+  --z-preview: 69;
+  --z-cursor: 70;
+  --z-menu: 78;
+  --z-modal: 80;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =====================================================================
+   THEMES
+   Each palette defines the same 9 roles:
+     --ground      page background
+     --ground-2    raised surface (cards, chat panel)
+     --ink         primary text
+     --muted       secondary text (≥ 4.5:1 on --ground)
+     --line        hairlines / borders
+     --accent      the brand colour (buttons, highlights)
+     --on-accent   text placed ON --accent
+     --accent-2    secondary highlight (used sparingly)
+     --on-accent-2 text placed ON --accent-2
+   ===================================================================== */
+
+/* Default — DARK LIME: warm near-black + acid lime + ice blue */
+:root,
+html[data-theme="dark-lime"] {
+  --ground: #0c0d0b;
+  --ground-2: #171914;
+  --ink: #edeee8;
+  --muted: #9a9c93;
+  --line: rgba(237, 238, 232, 0.13);
+  --accent: #d4f53c;
+  --on-accent: #0c0d0b;
+  --accent-2: #a9dcff;
+  --on-accent-2: #0c0d0b;
+  color-scheme: dark;
+}
+
+/* DARK COBALT: blue-black + periwinkle + lime */
+html[data-theme="dark-cobalt"] {
+  --ground: #0a0b10;
+  --ground-2: #14161f;
+  --ink: #ecedf3;
+  --muted: #9398a8;
+  --line: rgba(236, 237, 243, 0.13);
+  --accent: #6e86ff;
+  --on-accent: #0a0b10;
+  --accent-2: #d9f24a;
+  --on-accent-2: #0a0b10;
+  color-scheme: dark;
+}
+
+/* NOIR: pure monochrome */
+html[data-theme="noir"] {
+  --ground: #0a0a0a;
+  --ground-2: #171717;
+  --ink: #f2f2f2;
+  --muted: #a0a0a0;
+  --line: rgba(242, 242, 242, 0.14);
+  --accent: #f2f2f2;
+  --on-accent: #0a0a0a;
+  --accent-2: #5a5a5a;
+  --on-accent-2: #f2f2f2;
+  color-scheme: dark;
+}
+
+/* BONE: the only light palette — warm paper + cobalt + lime */
+html[data-theme="bone"] {
+  --ground: #efede6;
+  --ground-2: #e3e0d6;
+  --ink: #121212;
+  --muted: #5c5952;
+  --line: rgba(18, 18, 18, 0.14);
+  --accent: #2f49ff;
+  --on-accent: #ffffff;
+  --accent-2: #d9f24a;
+  --on-accent-2: #121212;
+  color-scheme: light;
+}
+
+/* =====================================================================
+   base.css — RESET, ELEMENT DEFAULTS, TYPOGRAPHY HELPERS
+   ===================================================================== */
+
+/* Registered custom properties.
+   Registering them lets the browser ANIMATE them:
+   --cx/--cy  : cursor position, smoothed by a transition on <html>
+   --v        : integer used by the count-up stats (counter(v))           */
+@property --cx {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: -300px;
+}
+@property --cy {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: -300px;
+}
+@property --v {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
-  height: 100%;
+  scroll-behavior: smooth;
+  /* nav is ~64px tall: keep anchor targets from hiding under it */
+  scroll-padding-top: 72px;
+  background: var(--ground);
+  /* cursor position eases toward the pointer (used by .cursor and .mprev) */
+  transition:
+    --cx 0.16s ease-out,
+    --cy 0.16s ease-out;
 }
 
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip; /* the rotated band bleeds sideways on purpose */
+}
+
+/* lock scroll while the mobile menu is open (class set by the menu component) */
+body.is-locked {
+  overflow: hidden;
+}
+
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+dl {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+input {
+  font: inherit;
+}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* One focus style for every interactive element (keyboard users) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Typography helpers ------------------------------------ */
+.display {
+  font-family: var(--font-display);
+}
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Small uppercase mono label: "(02) — Featured work" */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+}
+
+/* Section title: EXPERIENCE, EDUCATION… */
+.h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: var(--track-hero);
+  text-transform: uppercase;
+}
+
+/* Visually hidden but read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Centered content column used by every section */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+
+/* Section header row: big title left, mono label right */
+.section-head {
+  container-type: inline-size; /* lets .h2 size itself to this row (cqi) */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+/* ---------- Shared keyframes -------------------------------------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ping {
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
