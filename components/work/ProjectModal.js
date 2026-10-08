@@ -90,7 +90,7 @@ export function ProjectModal() {
                   const external = link.href.startsWith("http");
                   return (
                     <a
-                      className="btn btn--ghost"
+                      className={`btn ${link.variant === "solid" ? "btn--solid" : "btn--ghost"}`}
                       key={`${link.label}-${link.href}`}
                       href={link.href}
                       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}

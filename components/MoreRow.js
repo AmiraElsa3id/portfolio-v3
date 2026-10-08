@@ -20,7 +20,7 @@ export function MoreRow({ build }) {
     image: build.image,
     description: build.brief,
     tags: build.stack.split(" · "),
-    links: [{ label: build.cta.replace(" ↗", ""), href: build.href }],
+    links: build.links ?? [{ label: build.cta.replace(" ↗", ""), href: build.href }],
     num: build.num,
     context: build.context,
   };

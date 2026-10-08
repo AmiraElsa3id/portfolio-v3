@@ -127,6 +127,8 @@ export const FEATURED_PROJECTS = [
  * @property {string} stack    e.g. "React · REST"
  * @property {string} href
  * @property {string} cta      "Live demo ↗" | "Code on GitHub ↗"
+ * @property {{label:string, href:string, variant?:"solid"|"ghost"}[]} [links]
+ *            links shown in the detail modal; falls back to the single cta link
  * @property {string} brief    paragraph shown in the hover preview
  * @property {{bg:string, color:string, name:string, lang?:string}} shot
  */
@@ -245,6 +247,14 @@ export const MORE_BUILDS = [
     stack: "React · Node · MongoDB",
     href: "https://github.com/AmiraElsa3id/smart-notes-workspace",
     cta: "Code on GitHub ↗",
+    links: [
+      {
+        label: "Video demo",
+        href: "https://drive.google.com/file/d/1oDVvvpkFYGTyySpinmodgiIdkLMcUvUS/view?usp=sharing",
+        variant: "solid",
+      },
+      { label: "Code on GitHub", href: "https://github.com/AmiraElsa3id/smart-notes-workspace" },
+    ],
     brief:
       "JWT auth and CRUD notes with categories, tags, pinning and archiving; markdown rendering, debounced full-text search, avatar uploads and a Swagger-documented API.",
     shot: { bg: "var(--accent-2)", color: "var(--on-accent-2)", name: "Notes" },
