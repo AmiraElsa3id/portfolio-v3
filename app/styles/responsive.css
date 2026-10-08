@@ -1,0 +1,217 @@
+/* =====================================================================
+   responsive.css — BREAKPOINTS
+   ---------------------------------------------------------------------
+   The layout is fluid by default (clamp() type, auto-fit grids, wrapping
+   flex rows), so only a handful of overrides are needed. Loaded last so
+   these win.
+
+   Breakpoints (max-width, desktop-first):
+     900px  tablet portrait  → nav links collapse into the burger menu,
+                               stats go 2 columns, preview cards hide
+     760px  phone            → gallery stacks vertically, compact cards
+     600px  small phone      → "20-sec summary" leaves the top bar (it's in the menu)
+     520px  narrow phone     → chat button becomes icon-only
+   Plus: (pointer: coarse) hides hover-only UI (cursor bubble, previews)
+         (prefers-reduced-motion) switches every animation off
+
+   Full table: docs/05-responsive.md
+   ===================================================================== */
+
+/* ---------- ≤ 900px : tablet -------------------------------------- */
+@media (max-width: 900px) {
+  .nav__links {
+    display: none;
+  }
+  .burger {
+    display: block;
+  }
+  .statgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mrow {
+    grid-template-columns: 36px minmax(0, 1fr) 32px;
+  }
+  .mrow__hide-sm {
+    display: none;
+  }
+  .mprev {
+    display: none;
+  }
+  .xrow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+
+/* ---------- ≤ 760px : phone --------------------------------------- */
+@media (max-width: 760px) {
+  /* Gallery: no pinning, cards in one column */
+  .gallery {
+    height: auto;
+  }
+  .gallery__pin {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    padding-block: 96px 24px;
+    overflow: visible;
+    gap: 32px;
+  }
+  .track {
+    animation: none !important;
+    flex-direction: column;
+    width: auto;
+    gap: 56px;
+  }
+  .pcard {
+    width: auto;
+  }
+  .endcard {
+    width: auto;
+    justify-content: flex-start;
+  }
+  .endlink {
+    width: auto;
+    height: auto;
+    min-height: 56px;
+    border-radius: var(--r-pill);
+    padding: 0 26px;
+    flex-direction: row;
+    font-size: 18px;
+  }
+  .gallery__meter {
+    display: none;
+  }
+
+  /* Hero */
+  .scroll-cue {
+    display: none;
+  }
+  .hero__side {
+    width: 100%;
+  }
+  .now-card {
+    max-width: none;
+    flex: 1;
+  }
+
+  /* Stats: the "1st" cell takes the full row */
+  .statgrid > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Principle cards: shorter, smaller art so each fits the screen */
+  .scard {
+    min-height: 0;
+    padding: 28px 24px;
+    gap: 28px;
+    margin-bottom: 24px;
+  }
+  .rings {
+    width: 150px;
+    height: 150px;
+  }
+  .dots {
+    width: 170px;
+  }
+  .streaks {
+    max-width: 230px;
+  }
+
+  /* Lists */
+  .edu {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  .xrow {
+    padding: 32px 0;
+  }
+  .xrow li {
+    font-size: var(--fs-body);
+  }
+  .box {
+    padding: 24px;
+  }
+  .skcell {
+    padding: 20px;
+  }
+  .tgrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .tgrid dd {
+    margin-bottom: 12px;
+  }
+
+  /* Contact */
+  .blob {
+    width: 150px;
+    height: 150px;
+    font-size: 15px;
+  }
+
+  /* Chat becomes a near full-width sheet */
+  .fab {
+    right: 16px;
+    bottom: 16px;
+  }
+  .chat {
+    left: 8px;
+    right: 8px;
+    width: auto;
+    bottom: 80px;
+    height: min(560px, 75svh);
+  }
+}
+
+/* ---------- ≤ 600px ----------------------------------------------- */
+@media (max-width: 600px) {
+  .hide-sm {
+    display: none;
+  }
+}
+
+/* ---------- ≤ 520px ----------------------------------------------- */
+@media (max-width: 520px) {
+  .fab__text {
+    display: none;
+  }
+  .fab {
+    padding: 0 16px;
+  }
+}
+
+/* ---------- Touch screens: no hover-only UI ------------------------ */
+@media (pointer: coarse) {
+  .cursor,
+  .mprev {
+    display: none;
+  }
+}
+
+/* ---------- Reduced motion ----------------------------------------
+   Kills every animation/transition, un-pins the gallery and tells the
+   WebGL hero to render a single still frame (hero-ascii.js checks this). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .gallery {
+    height: auto;
+  }
+  .gallery__pin {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    padding-block: 120px;
+  }
+  .track-wrap {
+    overflow-x: auto;
+  }
+}

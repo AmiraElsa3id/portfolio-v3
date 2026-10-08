@@ -1,0 +1,61 @@
+/* =====================================================================
+   nextjs-additions.css — the ONLY deltas from the static site's CSS
+   ---------------------------------------------------------------------
+   components.css / sections.css / responsive.css are byte-for-byte ports.
+   Everything the React rebuild needs to change lives here, so the map in
+   docs/component-map.md stays honest:
+
+   1. The summary modal and mobile menu are native <dialog> elements now
+      (were a .scrim div + a .menu div). Native dialogs give us focus
+      trapping, Esc-to-close, inert background and ::backdrop for free.
+   2. The pinned gallery height is a CSS variable so it can grow with the
+      number of project cards (Gallery sets --gallery-height inline).
+   ===================================================================== */
+
+/* ---------- 1a. Summary modal (<dialog class="modal">) ---------------- */
+/* .modal already provides width, max-height, padding, border, radius,
+   background and the panelIn animation. A native dialog centres itself,
+   so we only need to make sure it stays centred and its backdrop matches
+   the old .scrim overlay. */
+dialog.modal {
+  margin: auto;
+}
+dialog.modal:not([open]) {
+  display: none;
+}
+dialog.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.25s both;
+}
+
+/* ---------- 1b. Mobile menu (<dialog class="menu">) ------------------- */
+/* .menu already fills the viewport; override the UA dialog box so it is
+   truly edge-to-edge and its backdrop is the page colour. */
+dialog.menu {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  inset: 0;
+  border: 0;
+}
+dialog.menu:not([open]) {
+  display: none;
+}
+dialog.menu::backdrop {
+  background: var(--ground);
+}
+
+/* ---------- 2. Flexible pinned-gallery height ------------------------- */
+.gallery {
+  height: var(--gallery-height, 3300px);
+}
+
+/* ---------- 3. Summary modal title (was an inline style in index.html) - */
+.modal__title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}

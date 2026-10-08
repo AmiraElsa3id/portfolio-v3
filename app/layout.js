@@ -1,6 +1,11 @@
 import { syne, manrope, jetbrainsMono } from "./fonts";
 import "./globals.css";
+import "./styles/components.css";
+import "./styles/sections.css";
+import "./styles/responsive.css";
+import "./styles/nextjs-additions.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { SummaryProvider } from "@/components/summary/SummaryProvider";
 
 const SITE_DESCRIPTION =
   "Amera Mohammed — full-stack software engineer in Mansoura, Egypt. Laravel, Django and Node APIs behind React and Next.js front ends. Ranked 1st on ITI's Open Source track. Open to relocation.";
@@ -42,7 +47,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SummaryProvider>{children}</SummaryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

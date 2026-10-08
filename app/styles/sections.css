@@ -1,0 +1,783 @@
+/* =====================================================================
+   sections.css — PAGE SECTIONS (top → bottom)
+   ---------------------------------------------------------------------
+   Order matches index.html:
+     1. Nav            5. About            9.  Experience
+     2. Hero           6. Featured work    10. Education
+     3. Stack band     7. More builds      11. Skills
+     4. Stats          8. How I work       12. Contact + footer
+   Section-by-section notes: docs/06-sections-and-content.md
+   ===================================================================== */
+
+/* ---------- 1. NAV -----------------------------------------------------
+   Sticky, zero-height wrapper so it overlays the hero instead of pushing
+   it down. The inner bar is transparent at the top of the page and fades
+   to a solid, blurred bar after ~140px of scroll (CSS scroll timeline).
+   Browsers without scroll timelines get the solid bar all the time.      */
+.nav {
+  position: sticky;
+  top: 0;
+  height: 0;
+  z-index: var(--z-nav);
+}
+.nav__bar {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+@supports (animation-timeline: scroll()) {
+  .nav__bar {
+    animation: navSolid linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 140px;
+  }
+}
+@keyframes navSolid {
+  from {
+    background: transparent;
+    border-bottom-color: transparent;
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 10px;
+}
+.nav__logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.nav__links {
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.nav__links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: color 0.3s;
+}
+.nav__links a::after {
+  /* underline that wipes in from the left */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform 0.4s var(--ease);
+}
+.nav__links a:hover {
+  color: var(--accent);
+}
+.nav__links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: 0 50%;
+}
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- 2. HERO ----------------------------------------------------
+   Layers (back → front):
+     .hero__fallback  dotted grid (shown if WebGL is unavailable)
+     .hero__canvas    WebGL ASCII field (assets/js/hero-ascii.js)
+     .hero__content   copy, buttons, "Right now" card
+   The name uses mix-blend-mode:difference so it stays legible over the
+   bright glyphs near the cursor.                                          */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: max(640px, min(940px, 100svh));
+}
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__fallback {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--line) 1.2px, transparent 1.6px);
+  background-size: 12px 12px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 25%, #000 75%);
+  mask-image: linear-gradient(90deg, transparent 25%, #000 75%);
+}
+.hero__content {
+  position: relative;
+  min-height: max(640px, min(940px, 100svh));
+  padding-top: 112px; /* clears the nav */
+  padding-bottom: 96px; /* keeps the "Right now" card clear of the chat button */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 36px;
+}
+.hero__meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero__kicker {
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.2vw, 16px);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+/* The wrapper is a size container so the name can be sized to fit it:
+   line 1 "AMERA" is big, line 2 "MOHAMMED" exactly fills the width —
+   a justified lockup that never overflows at any screen size.          */
+.hero__namewrap {
+  container-type: inline-size;
+}
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-hero-2);
+  line-height: 0.86;
+  letter-spacing: var(--track-hero);
+  text-transform: uppercase;
+}
+.hero__name .line:first-child {
+  font-size: var(--fs-hero-1);
+}
+.blend {
+  mix-blend-mode: difference;
+  color: #fff;
+}
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+} /* mask for the rise-in */
+.rise {
+  display: inline-block;
+  animation: rise 0.9s var(--out) both;
+}
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+.fade {
+  animation: fadeUp 0.8s var(--out) both;
+}
+.hero__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero__intro {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.hero__lead {
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  font-weight: 500;
+}
+.hero__ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero__side {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+.now-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 300px;
+  padding: 16px 18px;
+  border-radius: var(--r);
+  background: var(--ground);
+  border: 1px solid var(--line);
+}
+.now-card strong {
+  font-size: var(--fs-body);
+  line-height: 1.45;
+}
+.now-card span:last-child {
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  color: var(--muted);
+}
+.now-card b {
+  color: var(--ink);
+}
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.scroll-cue span:first-child {
+  writing-mode: vertical-rl;
+}
+.scroll-cue__line {
+  width: 1px;
+  height: 56px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 40%;
+  background: var(--ink);
+  animation: cue 2s var(--ease) infinite;
+}
+@keyframes cue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(260%);
+  }
+}
+/* Hero copy drifts up + fades as the hero scrolls away */
+@supports (animation-timeline: view()) {
+  .hero-out {
+    animation: heroOut linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+}
+@keyframes heroOut {
+  to {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+/* ---------- 3. STACK BAND --------------------------------------------- */
+/* overflow-x: clip trims the tilted band's overhang without creating a
+   horizontal scrollbar (and without clipping it vertically). */
+.stackband {
+  padding: 48px 0 40px;
+  overflow-x: clip;
+}
+.stackband .band {
+  background: var(--accent);
+  color: var(--on-accent);
+  transform: rotate(-2deg);
+  margin: 0 -4%;
+  padding: 18px 0;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- 4. STATS -------------------------------------------------- */
+.stats {
+  padding-block: 72px 40px;
+}
+.statgrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 28px 32px;
+}
+.statcell {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.statcell--lead {
+  border-top: 2px solid var(--accent);
+}
+.statcell__num {
+  font-family: var(--font-display);
+  font-size: var(--fs-stat);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.statcell--lead .statcell__num {
+  font-size: var(--fs-stat-xl);
+  line-height: 0.9;
+  letter-spacing: var(--track-hero);
+}
+.statcell p {
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+/* ---------- 5. ABOUT ---------------------------------------------------
+   Each word is a <span class="w"> that brightens as it scrolls into view. */
+.about {
+  padding-block: var(--sp-section) calc(var(--sp-section) + 10px);
+}
+.about__text {
+  margin-top: 36px;
+  max-width: 1260px;
+  font-family: var(--font-display);
+  font-size: var(--fs-about);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.about__text em {
+  font-style: normal;
+  color: var(--accent);
+}
+@supports (animation-timeline: view()) {
+  .w {
+    animation: ink linear both;
+    animation-timeline: view();
+    animation-range: entry 100% cover 40%;
+  }
+}
+@keyframes ink {
+  from {
+    opacity: 0.16;
+  }
+}
+
+/* ---------- 6. FEATURED WORK (pinned horizontal gallery) ---------------
+   .gallery is tall (3300px). .gallery__pin sticks to the viewport while
+   the .track slides left, driven by a named view timeline (--gallery).
+   No JS. Fallbacks:
+     • no scroll-timeline support → normal section, track scrolls sideways
+     • phones (≤ 760px)          → cards stack vertically (responsive.css)  */
+.gallery {
+  position: relative;
+  height: 3300px;
+}
+.gallery__pin {
+  position: sticky;
+  top: 0;
+  height: min(880px, 100svh);
+  min-height: 680px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  padding-top: 64px; /* room for the nav bar */
+}
+/* One-line title here so the cards get the vertical space */
+.gallery__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, min(5.4vw, calc(100cqi / 15.5)), 84px); /* "THINGS I'VE BUILT" ≈ 14.6em */
+  line-height: 0.9;
+  letter-spacing: var(--track-hero);
+  text-transform: uppercase;
+}
+.gallery__head {
+  container-type: inline-size;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.gallery__meter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  min-width: 220px;
+}
+.gallery__bar {
+  display: block;
+  width: 220px;
+  height: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.gallery__bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: 0 50%;
+}
+.track {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  padding-inline: var(--gut);
+}
+.endcard {
+  flex: none;
+  width: clamp(260px, 26vw, 380px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.endlink {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  text-align: center;
+  transition:
+    background-color 0.4s,
+    color 0.4s;
+}
+.endlink:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+@supports (animation-timeline: view()) {
+  /* inset 0: ignore html's scroll-padding-top so progress starts exactly
+     when the pin locks (otherwise the first card starts ~72px shifted) */
+  .gallery {
+    view-timeline: --gallery block;
+    view-timeline-inset: 0;
+  }
+  .track {
+    animation: slide linear both;
+    animation-timeline: --gallery;
+    animation-range: contain 0% contain 100%;
+  }
+  .gallery__bar span {
+    animation: grow linear both;
+    animation-timeline: --gallery;
+    animation-range: contain 0% contain 100%;
+  }
+}
+@supports not (animation-timeline: view()) {
+  .gallery {
+    height: auto;
+  }
+  .gallery__pin {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    padding-block: 120px;
+    overflow: visible;
+  }
+  .track-wrap {
+    overflow-x: auto;
+  }
+}
+@keyframes slide {
+  to {
+    transform: translateX(calc(-100% + 100vw));
+  }
+}
+
+/* ---------- 7. MORE BUILDS -------------------------------------------- */
+.more {
+  padding-block: 110px 40px;
+}
+.more__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2-small);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.mlist {
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- 8. HOW I WORK --------------------------------------------- */
+.principles {
+  padding-block: var(--sp-section) 90px;
+}
+
+/* ---------- 9. EXPERIENCE --------------------------------------------- */
+.experience {
+  padding-block: 50px var(--sp-section);
+}
+.xlist {
+  border-bottom: 1px solid var(--line);
+}
+.xrow {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 40px;
+  padding: 44px 0;
+  border-top: 1px solid var(--line);
+}
+.xrow__when {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--font-mono);
+}
+.xrow__when span:first-child {
+  font-size: 14px;
+  color: var(--accent);
+}
+.xrow__when span:last-child {
+  font-size: var(--fs-label);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.xrow__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.xrow__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-job-title);
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  line-height: 1.05;
+}
+.xrow ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.xrow li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 8px;
+  color: var(--muted);
+  font-size: var(--fs-body-lg);
+  line-height: 1.6;
+}
+.xrow li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: 10px;
+  background: var(--accent);
+}
+.xrow li b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- 10. EDUCATION --------------------------------------------- */
+.education {
+  padding-block: 30px var(--sp-section);
+}
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 56px;
+  align-items: start;
+}
+.edu-list {
+  border-bottom: 1px solid var(--line);
+}
+.edu {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 24px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.edu__when {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--accent);
+}
+.edu__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.edu__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.edu__body p {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+}
+.honors {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.honor-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--accent);
+  letter-spacing: var(--track-label);
+}
+.honor-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+/* ---------- 11. SKILLS ------------------------------------------------ */
+.skills {
+  padding-block: 30px var(--sp-section);
+}
+
+/* ---------- 12. CONTACT + FOOTER --------------------------------------
+   Full accent block. Text uses --on-accent so it adapts per theme.       */
+.contact {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.contact .label {
+  color: var(--on-accent);
+  opacity: 0.75;
+}
+.contact__inner {
+  padding-block: 120px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+.contact__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.contact__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-contact);
+  font-weight: 800;
+  line-height: 0.84;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+.contact__email {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.4vw, 50px);
+  font-weight: 700;
+  letter-spacing: var(--track-display);
+  overflow-wrap: anywhere;
+}
+.contact__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.contact__socials {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.blob {
+  /* round "Say hello" button */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  transition: transform 0.6s var(--out);
+}
+.blob:hover {
+  transform: scale(1.08) rotate(-8deg);
+}
+.ul {
+  /* underline that grows on hover */
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 3px no-repeat;
+  transition: background-size 0.5s var(--ease);
+  padding-bottom: 6px;
+}
+.ul:hover {
+  background-size: 100% 3px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+}
+.footer__palette {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Shared "wipe up" reveal for section titles */
+@supports (animation-timeline: view()) {
+  .wipe {
+    animation: wipe linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 36%;
+  }
+}
+@keyframes wipe {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(40px);
+  }
+}
