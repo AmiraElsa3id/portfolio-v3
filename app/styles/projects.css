@@ -126,13 +126,13 @@
 
 /* ---------- Project detail modal --------------------------------------- */
 .pmodal {
-  width: min(1000px, 100%);
-  max-height: calc(100svh - 32px);
+  width: min(840px, 100%);
+  max-height: calc(100svh - 48px);
   overflow: hidden auto;
   margin: auto;
   padding: 0;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--ground);
   color: var(--ink);
   animation: panelIn 0.45s var(--out) both;
@@ -146,14 +146,15 @@
 }
 .pmodal__close {
   position: absolute;
-  right: 14px;
-  top: 14px;
+  right: 12px;
+  top: 12px;
   z-index: 3;
   background: var(--ground);
 }
 .pmodal__media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
+  max-height: 44svh;
   background: var(--ground-2);
   overflow: hidden;
 }
@@ -164,33 +165,33 @@
 }
 .pmodal__num {
   position: absolute;
-  left: 16px;
-  top: 14px;
+  left: 14px;
+  top: 12px;
   z-index: 2;
-  padding: 5px 9px;
+  padding: 4px 8px;
   background: var(--ground);
   border: 1px solid var(--line);
   font-size: 11px;
   letter-spacing: var(--track-label);
 }
 .pmodal__body {
-  padding: clamp(22px, 3vw, 40px);
+  padding: clamp(16px, 2vw, 26px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 .pmodal__title {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 46px);
+  font-size: clamp(22px, 2.6vw, 32px);
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 1.02;
+  line-height: 1.05;
 }
 .pmodal__desc {
   color: var(--muted);
-  font-size: var(--fs-body-lg);
+  font-size: var(--fs-body);
   line-height: 1.55;
-  max-width: 68ch;
+  max-width: 62ch;
 }
 .pmodal__context {
   color: var(--muted);
@@ -199,9 +200,14 @@
 }
 .pmodal__links {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 4px;
+}
+.pmodal__links .btn {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 14px;
 }
 
 /* ---------- View Transitions: card → modal morph ----------------------- */
