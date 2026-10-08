@@ -56,3 +56,15 @@ dialog.menu::backdrop {
   letter-spacing: -0.03em;
   line-height: 1;
 }
+
+/* ---------- 3. Hero heading in the light palette ---------------------- */
+/* sections.css has `.blend { mix-blend-mode: difference; color:#fff }` so
+   the hero name would invert over the ASCII field. But `container-type` on
+   .hero__namewrap creates a stacking context, so the blend has no backdrop
+   to blend against and the text stays pure white — invisible on the light
+   "bone" background. Use the theme ink instead: light text in the dark
+   palettes, dark text in bone. */
+.blend {
+  mix-blend-mode: normal;
+  color: var(--ink);
+}
