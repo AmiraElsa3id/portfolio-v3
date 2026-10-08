@@ -1,0 +1,368 @@
+{
+  "name": "Amera Mohammed",
+  "title": "FullStack Software Engineer",
+  "titles": ["FullStack Software Engineer", "Frontend Engineer", "Backend Engineer"],
+  "cv": "/Amera_Mohammed_Software_Engineer.pdf",
+  "contact": {
+    "phone": "+20 102 168 5965",
+    "email": "ameraelsa3id@gmail.com",
+    "location": "Cairo, Egypt",
+    "relocation": "Open to Relocation / Remote",
+    "linkedin": "https://www.linkedin.com/in/amera-mohammed/",
+    "github": "https://github.com/AmiraElsa3id"
+  },
+  "summary": "Full-stack software engineer with a BSc in Computer Science and hands-on experience designing server-side systems, RESTful APIs, and responsive user interfaces. Proficient across the stack: PHP, Laravel, Python, Django, Node.js/Express and DRF on the backend; React, Next.js, Vue.js, Angular and TypeScript on the frontend; MySQL and MongoDB for database design. Highly adaptable with a passion for continuous learning, quickly mastering new technologies, containerization tools, and modern workflows. Mentored 20+ developers and delivered 30+ technical workshops.",
+  "skills": {
+    "Languages": [
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "PHP",
+      "Python",
+      "SQL",
+      "C++ (Basic)",
+      "Java (Basic)"
+    ],
+    "Frameworks & Libraries": [
+      "React",
+      "Next.js",
+      "Vue.js",
+      "Angular (Basic)",
+      "jQuery",
+      "Django",
+      "Flask",
+      "Laravel",
+      "Node.js",
+      "Express",
+      "Inertia.js"
+    ],
+    "Styling": ["Tailwind CSS", "Bootstrap", "SASS/SCSS", "CSS Animations", "Responsive Design"],
+    "State Management": ["React Context API", "React Hooks", "Redux", "Zustand"],
+    "APIs & Auth": [
+      "RESTful APIs",
+      "JWT Authentication",
+      "Stripe Payment",
+      "RBAC",
+      "Spatie Laravel Permission"
+    ],
+    "Backend": ["Laravel", "Django", "Custom PHP MVC", "Postman", "API Design"],
+    "Databases": ["MySQL", "MongoDB", "Eloquent ORM", "PDO", "Query Optimisation"],
+    "Performance": [
+      "Core Web Vitals",
+      "Lighthouse Auditing",
+      "Code Splitting",
+      "Lazy Loading",
+      "Image Optimisation"
+    ],
+    "Accessibility": ["WCAG Guidelines", "Semantic HTML", "ARIA Attributes"],
+    "DevOps & Tools": [
+      "Git",
+      "GitHub",
+      "Linux",
+      "Apache",
+      "Nginx",
+      "CI/CD Basics",
+      "Figma",
+      "Agile/Scrum"
+    ],
+    "Soft Skills": [
+      "Problem Solving",
+      "Critical Thinking",
+      "Mentorship",
+      "Technical Communication",
+      "Attention to Detail",
+      "Collaboration",
+      "Adaptability"
+    ]
+  },
+  "experience": [
+    {
+      "role": "Frontend Engineer Mentor — React / Next.js",
+      "company": "Route Academy",
+      "period": "Sep 2024 — Present",
+      "highlights": [
+        "Mentored 20+ junior developers weekly on React, Next.js, TypeScript, and modern JavaScript patterns, maintaining an assignment-completion rate above 90%.",
+        "Delivered 30+ live technical workshops covering React Hooks, Server Components, state management, performance optimisation, and component architecture best practices.",
+        "Conducted structured code reviews, identifying and eliminating recurring anti-patterns and reducing repeated errors by approximately 40% across two semesters.",
+        "Introduced accessibility (WCAG) standards, responsive design, and reusable component patterns into the curriculum."
+      ]
+    },
+    {
+      "role": "Frontend Developer (WordPress)",
+      "company": "Ave Events",
+      "period": "Sep 2024 — Sep 2025, Full-Time",
+      "highlights": [
+        "Built and maintained 5+ responsive, cross-browser-compatible websites with 99%+ uptime reliability.",
+        "Reduced average page load time by 25% through caching strategies, image optimisation, and Lighthouse performance auditing.",
+        "Implemented custom theme enhancements and UX improvements that increased average session duration by 18%.",
+        "Diagnosed and resolved 15+ critical UI/UX bugs; applied timely updates to maintain cross-browser and cross-device compatibility."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "RestoMind — AI-Powered Restaurant Management",
+      "tech": "Next.js, NestJS, Python FastAPI, MongoDB",
+      "description": "Smart restaurant management platform featuring a Next.js frontend, NestJS/MongoDB backend, and a Python FastAPI AI forecasting model. Implemented reservation workflows, role-based access control, and Stripe payment processing.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/prediction-model",
+        "demo": "https://www.linkedin.com/feed/update/urn:li:activity:7497253809732358144/",
+        "front": "https://github.com/AhmedMohO/restomind-app",
+        "back": "https://github.com/KhaledAlmorse/RestoMindAPI",
+        "model": "https://github.com/AmiraElsa3id/prediction-model"
+      },
+      "image": "/assets/images/restomind.png",
+      "focus": ["full-stack", "ai-ml"]
+    },
+    {
+      "name": "FreshCart — Next.js E-Commerce",
+      "tech": "Next.js, TypeScript, Tailwind CSS, REST API, Stripe",
+      "description": "Full-storefront e-commerce build on the Next.js App Router — category and brand browsing, a large product catalogue, cart and wishlist, authentication, and a responsive checkout flow.",
+      "links": {
+        "code": null,
+        "demo": "https://freshcart-route.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/freshcart-next.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Cosmos — Space Dashboard",
+      "tech": "React, Tailwind CSS, REST API",
+      "description": "Space data dashboard consuming the NASA APOD and SpaceDevs APIs — astronomy picture of the day, upcoming launches, a planet explorer with orbital stats, and a planet comparison table.",
+      "links": {
+        "code": null,
+        "demo": "https://cosmos-space-dashboard-route.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/cosmos-space.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Wanderlust — Travel Planner",
+      "tech": "React, Tailwind CSS, REST API",
+      "description": "Travel-planning dashboard covering 90+ countries: public holidays, city events, 7-day weather, a long-weekend finder, live currency conversion, sunrise/sunset times, and saved trip plans.",
+      "links": {
+        "code": null,
+        "demo": "https://city-specs-route.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/city-specs.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "QuizMaster — Quiz Game",
+      "tech": "React, Tailwind CSS, REST API",
+      "description": "Configurable quiz game with player name, category, difficulty and round setup, XP-based scoring, and a dynamic trivia API feeding the questions through a modern arena UI.",
+      "links": {
+        "code": null,
+        "demo": "https://quiz-master-route.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/quiz-master.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Mudabbir — Personal Finance Dashboard",
+      "tech": "React, Tailwind CSS, Chart.js",
+      "description": "Arabic RTL personal-finance dashboard with balances, income vs. expenses, recent transactions, budgets, monthly bills, savings, payment methods, and weekly cash-flow charts.",
+      "links": {
+        "code": null,
+        "demo": "https://mudabbir.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/mudabbir.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "The UX Review — Brutalist Blog",
+      "tech": "React, Vite, Tailwind CSS",
+      "description": "Editorial blog with a bold brutalist identity — hero, trending and latest articles, author profiles, and a community/newsletter section built from reusable content components.",
+      "links": {
+        "code": null,
+        "demo": "https://the-ux-review-blog.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/ux-review.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Arabic Developer Portfolio",
+      "tech": "React, Tailwind CSS",
+      "description": "RTL Arabic single-page portfolio — hero, about, skills, a filterable project gallery, experience timeline, testimonials, and a contact form — with live theme and font customisation.",
+      "links": {
+        "code": null,
+        "demo": "https://portfolio-route.vercel.app/"
+      },
+      "context": "Built live in front of students during Route Academy's weekly mentoring sessions.",
+      "image": "/assets/images/portfolio-route.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Node Posts — RESTful API with Payments",
+      "tech": "Node.js, Express, MongoDB, JWT, Mongoose, Nodemailer",
+      "description": "Production-ready RESTful API with JWT authentication, role-based access control (user, moderator, admin), full post CRUD, and an integrated donation system with Kashier payment gateway and webhook handling. Secured with Helmet, XSS sanitization, NoSQL injection prevention, and rate limiting. Automated transactional emails via Nodemailer with EJS templates.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/Node-Posts",
+        "demo": null
+      },
+      "image": "/assets/images/node-posts-docs.png",
+      "focus": ["backend"]
+    },
+    {
+      "name": "WhatsApp Clone — Real-Time Chat App",
+      "tech": "React, Node.js, Express, Socket.IO, Vite",
+      "description": "Real-time chat application with private messaging and multi-user group chats powered by WebSockets via Socket.IO. Features instant username-based joining (no registration required), live online user visibility, group room broadcasting, and session-based chat history. Users are automatically removed upon disconnection.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/whatsapp-clone",
+        "demo": null
+      },
+      "image": "/assets/images/whatsapp-clone.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "Smart Notes Workspace — Full-Stack Notes App",
+      "tech": "React, Redux Toolkit, TanStack Query, Node.js, MongoDB, Tailwind CSS",
+      "description": "Full-stack note-taking application with JWT authentication, full CRUD notes with categories, tags, pinning, and archiving. Supports markdown rendering, debounced full-text search across title, content, and tags, pagination, avatar uploads, and persistent dark/light theme. Monorepo structure with separate backend and frontend, Swagger API documentation, deployable to Vercel and MongoDB Atlas.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/smart-notes-workspace",
+        "demo": null
+      },
+      "image": "/assets/images/smart-note.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "Clinic Appointment System",
+      "tech": "Python, Django, DRF, MySQL, Bootstrap 5, Chart.js",
+      "description": "Architected a multi-role platform with RBAC for 4 roles, automated slot generation, patient self-booking, appointment state machine, queue management, and EMR with prescriptions & lab tests. Built admin analytics dashboard with Chart.js (revenue, no-show rates, peak hours), CSV report exports, RESTful API for appointment CRUD, and in-app notifications for all events.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/Clinic-Appointment-System",
+        "demo": null
+      },
+      "image": "/assets/images/clinic.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "Hotel Management System",
+      "tech": "Laravel, Vue, Inertia.js, MySQL, Stripe, Tailwind CSS",
+      "description": "Built a full-scale hotel management platform with RBAC for Admins, Managers, Receptionists, and Clients. Implemented reservation workflows, room/floor allocation, and Stripe payment processing. Used Spatie Laravel Permission for granular role management across two isolated dashboards with separate authentication guards.",
+      "links": {
+        "code": "https://github.com/AhmedMohO/hotel-system",
+        "demo": "https://www.linkedin.com/feed/update/urn:li:activity:7449488338350133248/"
+      },
+      "image": "/assets/images/Hotel.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "Cafeteria Management System",
+      "tech": "PHP, Custom MVC, MySQL (PDO), Bootstrap, Apache",
+      "description": "Built a production-grade platform from scratch using a custom PHP MVC framework with Composer autoloading, PDO database abstraction, and environment-based configuration — no external framework. Developed the full Admin Orders module with order lifecycle management, database transaction handling, and secure input validation deployed on Apache.",
+      "links": {
+        "code": "https://github.com/AhmedMohO/cafeteria-project",
+        "demo": "https://www.linkedin.com/posts/amera-mohammed_php-webdevelopment-mvc-ugcPost-7440020393433907202-Ore-/"
+      },
+      "image": "/assets/images/Cafe.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "BlogHub — Full-Stack Blog Platform",
+      "tech": "Laravel, Vue.js, RESTful API, MySQL",
+      "description": "Built a RESTful API backend with JWT auth, CRUD, and nested comments on a normalised schema; consumed by a Vue.js SPA with Vue Router. Applied Eloquent ORM relationships, API resource controllers, and structured JSON responses.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/ITI-Blog",
+        "demo": null
+      },
+      "image": "/assets/images/iti-blog.png",
+      "focus": ["full-stack"]
+    },
+    {
+      "name": "Linked Posts — Social Media Application",
+      "tech": "Next.js, TypeScript, Tailwind CSS, REST API, JWT Auth",
+      "description": "Responsive social platform built with the Next.js App Router — timeline feed, posts, nested comments, likes, bookmarks, notifications, profiles with follow/unfollow, and friend suggestions. Includes JWT authentication, protected routes, dark/light mode, and polling-based live updates for Vercel.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/Linked-Posts",
+        "demo": "https://linked-posts-alpha.vercel.app/"
+      },
+      "image": "/assets/images/linked-posts.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "Fresh Cart — E-Commerce SPA",
+      "tech": "React, Tailwind CSS, Stripe, REST API",
+      "description": "Developed a production-ready e-commerce SPA with product browsing, category filtering, cart management, wishlist, and Stripe payment integration. Optimised component re-renders and applied lazy loading for improved Core Web Vitals scores.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/Fresh-Cart",
+        "demo": "https://fresh-cart-ecommerce-site.vercel.app"
+      },
+      "image": "/assets/images/fresh-cart.png",
+      "focus": ["frontend"]
+    },
+    {
+      "name": "AI Chat Clone",
+      "tech": "React, Tailwind CSS, Express, Hugging Face API, Supabase, Whisper",
+      "description": "Built a full-featured AI chat app with 5 conversation modes (General, Coding, Reasoning, Creative, Image Gen), real-time token-by-token streaming via SSE, voice input with Whisper transcription, PDF/image file attachments, and FLUX.1-schnell image generation. Implemented token tracking with color-coded status, context management with automatic history trimming, prompt injection safety filtering, Supabase session persistence, dark/light theme, and a mobile-responsive adaptive layout with swipeable sidebar.",
+      "links": {
+        "code": "https://github.com/AmiraElsa3id/Ai-Chat-Clone",
+        "demo": "https://www.linkedin.com/posts/amera-mohammed_built-an-ai-chat-clone-part-of-my-vibe-ugcPost-7467582877506113537-QdiQ/"
+      },
+      "image": "/assets/images/ai-chat-clone.png",
+      "focus": ["full-stack", "ai-ml"]
+    },
+    {
+      "name": "D-Pathy — AI-Powered Diabetic Retinopathy Detection",
+      "tech": "Python, TensorFlow, Flutter",
+      "description": "Graduation project — AI-powered mobile app for diabetic retinopathy detection, awarded an Excellent grade. Built the Flask API service that serves the TensorFlow model to the Flutter app.",
+      "links": {
+        "code": "https://github.com/nadareda12001/D-pthy",
+        "demo": "https://youtu.be/3Zspp3XEy4o",
+        "api": "https://github.com/AmiraElsa3id/flask-app"
+      },
+      "image": "/assets/images/d-pathy.png",
+      "focus": ["ai-ml", "backend"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "ITI Diploma — Open Source Track (9-Month Scholarship)",
+      "school": "Information Technology Institute (ITI), Mansoura",
+      "period": "2025 — 2026",
+      "details": [
+        "Ranked 1st on track — intensive software engineering program covering full-stack multi-language development, system architecture, database design, and debugging workflows.",
+        "Covered PHP/Laravel, Python/Django, MySQL, Linux administration, Apache/Nginx, DevOps fundamentals, and AI integration.",
+        "Graduation Project: RestoMind — smart restaurant management platform with a Next.js frontend, NestJS/MongoDB backend, and a Python FastAPI AI forecasting model. Model: https://github.com/AmiraElsa3id/prediction-model"
+      ]
+    },
+    {
+      "degree": "Master of Science in Computer Science",
+      "school": "Mansoura University",
+      "period": "2024 — Present",
+      "details": []
+    },
+    {
+      "degree": "Frontend Development Diploma",
+      "school": "Route Academy",
+      "period": "2023 — 2024",
+      "details": [
+        "Intensive programme covering React, Next.js, TypeScript, Tailwind CSS, and modern JavaScript (ES6+) patterns."
+      ]
+    },
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "Mansoura University",
+      "period": "Sep 2019 — May 2023",
+      "details": [
+        "Cumulative GPA: 3.61/4.0 (Very Good) — Top 15% of graduating class.",
+        "Graduation Project: D-Pathy — AI-powered diabetic retinopathy detection app; awarded Excellent grade."
+      ]
+    }
+  ],
+  "honors": [
+    "Silver Medal — Huawei ICT Competition 2022 (national-level technical competition).",
+    "CIS College Team Member — Led frontend development and motion graphics for Hack Your Future 3 & 4."
+  ],
+  "languages": {
+    "Arabic": "Native",
+    "English": "Conversational (Reading, Writing, Listening & Speaking)"
+  }
+}

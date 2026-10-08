@@ -2,8 +2,9 @@ import { Icon } from "@/components/ui/Icon";
 
 /*
   MoreRow — one row of "More builds". Hover fills the row with accent and a
-  preview card (.mprev) follows the cursor. Replace the .mshot children with
-  an <img> to show a real screenshot (CSS already handles object-fit).
+  preview card (.mprev) follows the cursor. When build.image is set (a real
+  screenshot in public/images/) it shows the image; otherwise the mock-browser
+  wireframe is drawn from build.shot.
 */
 export function MoreRow({ build }) {
   return (
@@ -16,21 +17,28 @@ export function MoreRow({ build }) {
       </span>
 
       <span className="mprev" aria-hidden="true">
-        <span className="mshot" style={{ background: build.shot.bg, color: build.shot.color }}>
-          <span className="mbar">
-            <i />
-            <i />
-            <i />
+        {build.image ? (
+          <span className="mshot">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={build.image} alt={`${build.name} screenshot`} loading="lazy" />
           </span>
-          <span className="mwire">
-            <b />
-            <b />
-            <b />
+        ) : (
+          <span className="mshot" style={{ background: build.shot.bg, color: build.shot.color }}>
+            <span className="mbar">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="mwire">
+              <b />
+              <b />
+              <b />
+            </span>
+            <span className="mname" lang={build.shot.lang}>
+              {build.shot.name}
+            </span>
           </span>
-          <span className="mname" lang={build.shot.lang}>
-            {build.shot.name}
-          </span>
-        </span>
+        )}
         <span className="mbrief">
           <b>{build.cta}</b>
           {build.brief}

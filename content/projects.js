@@ -36,6 +36,7 @@ export const FEATURED_PROJECTS = [
     badge: "ITI GRAD PROJECT",
     art: "forecast",
     visual: "accent",
+    image: "/images/restomind.webp",
   },
   {
     id: "ai-chat-clone",
@@ -53,6 +54,7 @@ export const FEATURED_PROJECTS = [
     ],
     art: "chat",
     visual: "ink",
+    image: "/images/ai-chat-clone.webp",
   },
   {
     id: "hotel-management",
@@ -70,6 +72,7 @@ export const FEATURED_PROJECTS = [
     ],
     art: "rooms",
     visual: "surface",
+    image: "/images/Hotel.webp",
   },
   {
     id: "freshcart",
@@ -82,6 +85,7 @@ export const FEATURED_PROJECTS = [
     badge: "TAUGHT LIVE",
     art: "bag",
     visual: "accent2",
+    image: "/images/freshcart-next.webp",
   },
   {
     id: "node-posts",
@@ -93,6 +97,7 @@ export const FEATURED_PROJECTS = [
     links: [{ label: "Code", href: "https://github.com/AmiraElsa3id/Node-Posts" }],
     art: "terminal",
     visual: "terminal",
+    image: "/images/node-posts-docs.webp",
   },
   {
     id: "d-pathy",
@@ -101,13 +106,15 @@ export const FEATURED_PROJECTS = [
     description:
       "My BSc graduation project: an app that checks eye scans for diabetic retinopathy using AI.",
     tags: ["AI / ML", "Mobile app"],
-    links: [{ label: "Demo video", href: "https://youtu.be/3Zspp3XEy4o" }],
+    links: [
+      { label: "Code", href: "https://github.com/nadareda12001/D-pthy" },
+      { label: "API", href: "https://github.com/AmiraElsa3id/flask-app" },
+      { label: "Demo video", href: "https://youtu.be/3Zspp3XEy4o" },
+    ],
     badge: "GRADED EXCELLENT",
     art: "eye",
     visual: "surface",
-    // TODO: the CV's D-Pathy [Code] link points at AmiraElsa3id/ITI-Blog, which
-    // looks like a copy-paste slip. Add the real repo here when known, e.g.
-    // links: [{ label: "Code", href: "https://github.com/AmiraElsa3id/d-pathy" }, ...]
+    image: "/images/d-pathy.webp",
   },
 ];
 
@@ -137,6 +144,7 @@ export const MORE_BUILDS = [
     brief:
       "NASA's picture of the day and SpaceDevs launch data in one dashboard, plus a planet explorer and comparison table.",
     shot: { bg: "#0A0B14", color: "#EDEEE8", name: "Cosmos" },
+    image: "/images/cosmos-space.webp",
   },
   {
     id: "wanderlust",
@@ -149,6 +157,7 @@ export const MORE_BUILDS = [
     brief:
       "Holidays, events, 7-day weather, a long-weekend finder and live currency for 90+ countries.",
     shot: { bg: "var(--ink)", color: "var(--ground)", name: "Wanderlust" },
+    image: "/images/city-specs.webp",
   },
   {
     id: "mudabbir",
@@ -161,6 +170,7 @@ export const MORE_BUILDS = [
     brief:
       "Balances, budgets, bills and weekly cash flow, built right-to-left for Arabic readers with Chart.js.",
     shot: { bg: "var(--ground-2)", color: "var(--accent)", name: "مدبّر", lang: "ar" },
+    image: "/images/mudabbir.webp",
   },
   {
     id: "quizmaster",
@@ -173,6 +183,7 @@ export const MORE_BUILDS = [
     brief:
       "Pick a category, difficulty and rounds. Questions come from a live trivia API and earn XP.",
     shot: { bg: "var(--accent)", color: "var(--on-accent)", name: "Quiz" },
+    image: "/images/quiz-master.webp",
   },
   {
     id: "ux-review",
@@ -185,6 +196,7 @@ export const MORE_BUILDS = [
     brief:
       "An editorial blog with a loud brutalist identity, built from reusable content components.",
     shot: { bg: "#0B0B0B", color: "#EDEEE8", name: "UX" },
+    image: "/images/ux-review.webp",
   },
   {
     id: "cafeteria",
@@ -197,6 +209,7 @@ export const MORE_BUILDS = [
     brief:
       "Ordering and admin system on a hand-written PHP MVC framework, with PDO and Composer autoloading.",
     shot: { bg: "var(--accent-2)", color: "var(--on-accent-2)", name: "PHP" },
+    image: "/images/Cafe.webp",
   },
 ];
 

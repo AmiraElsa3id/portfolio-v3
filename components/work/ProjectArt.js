@@ -19,6 +19,8 @@ export function ProjectArt({ project }) {
         <img
           src={image}
           alt={`${title} screenshot`}
+          loading="lazy"
+          decoding="async"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
       </div>
