@@ -153,6 +153,7 @@
 }
 .pmodal__media {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 44svh;
   background: var(--ground-2);
