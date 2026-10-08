@@ -64,7 +64,12 @@ export function MobileMenu({ open, onClose }) {
 
       <div className="menu__foot">
         <div className="hero__ctas">
-          <button type="button" className="btn btn--ghost" onClick={handleSummary}>
+          <button
+            type="button"
+            className="btn btn--ghost"
+            data-js="open-summary"
+            onClick={handleSummary}
+          >
             20-sec summary
           </button>
           <a className="btn btn--solid" href={CV_URL} target="_blank" rel="noopener noreferrer">

@@ -33,7 +33,12 @@ export function Nav() {
             </nav>
 
             <div className="nav__actions">
-              <button type="button" className="navbtn hide-sm" onClick={openSummary}>
+              <button
+                type="button"
+                className="navbtn hide-sm"
+                data-js="open-summary"
+                onClick={openSummary}
+              >
                 20-sec summary
               </button>
               <a

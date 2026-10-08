@@ -44,6 +44,7 @@ export function SummaryModal() {
     <dialog
       ref={ref}
       className="modal"
+      data-js="summary"
       aria-labelledby="summary-title"
       onClose={closeSummary}
       onCancel={closeSummary}
@@ -59,7 +60,13 @@ export function SummaryModal() {
             {profile.name}
           </h2>
         </div>
-        <button type="button" className="iconbtn" aria-label="Close summary" onClick={closeSummary}>
+        <button
+          type="button"
+          className="iconbtn"
+          data-js="close-summary"
+          aria-label="Close summary"
+          onClick={closeSummary}
+        >
           <Icon name="close" size={16} />
         </button>
       </div>

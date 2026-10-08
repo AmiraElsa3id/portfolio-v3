@@ -8,8 +8,10 @@
    1. The summary modal and mobile menu are native <dialog> elements now
       (were a .scrim div + a .menu div). Native dialogs give us focus
       trapping, Esc-to-close, inert background and ::backdrop for free.
-   2. The pinned gallery height is a CSS variable so it can grow with the
-      number of project cards (Gallery sets --gallery-height inline).
+   2. The summary modal title, which was an inline style in index.html.
+
+   (The flexible pinned-gallery height lives in sections.css — Gallery sets
+   --gallery-height inline; see .gallery there.)
    ===================================================================== */
 
 /* ---------- 1a. Summary modal (<dialog class="modal">) ---------------- */
@@ -47,12 +49,7 @@ dialog.menu::backdrop {
   background: var(--ground);
 }
 
-/* ---------- 2. Flexible pinned-gallery height ------------------------- */
-.gallery {
-  height: var(--gallery-height, 3300px);
-}
-
-/* ---------- 3. Summary modal title (was an inline style in index.html) - */
+/* ---------- 2. Summary modal title (was an inline style in index.html) - */
 .modal__title {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;

@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "node tests/run-tests.cjs",
+    "test:shots": "node tests/screenshots.cjs"
   },
   "dependencies": {
     "next": "16.4.0",
@@ -19,6 +21,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "eslint-config-prettier": "^10",
+    "playwright": "^1",
     "prettier": "^3"
   }
 }

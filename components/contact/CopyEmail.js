@@ -22,7 +22,13 @@ export function CopyEmail({ email }) {
   }
 
   return (
-    <button type="button" className="copy" data-email={email} onClick={handleCopy}>
+    <button
+      type="button"
+      className="copy"
+      data-js="copy-email"
+      data-email={email}
+      onClick={handleCopy}
+    >
       {copied ? "Copied ✓" : "Copy email"}
     </button>
   );

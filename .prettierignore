@@ -5,5 +5,6 @@ build
 coverage
 assets
 public
+tests/out
 package-lock.json
 *.md

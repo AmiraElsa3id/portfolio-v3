@@ -44,3 +44,6 @@ next-env.d.ts
 # reference material — the original static site, docs and zip stay on disk
 # but are intentionally excluded from the repo
 /assets
+
+# generated test artifacts
+/tests/out

@@ -384,7 +384,9 @@
      • phones (≤ 760px)          → cards stack vertically (responsive.css)  */
 .gallery {
   position: relative;
-  height: 3300px;
+  /* Flexible: Gallery sets --gallery-height from the project count. The
+     responsive + reduced-motion overrides below still win (height: auto). */
+  height: var(--gallery-height, 3300px);
 }
 .gallery__pin {
   position: sticky;
