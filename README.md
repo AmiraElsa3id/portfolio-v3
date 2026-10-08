@@ -96,9 +96,3 @@ opens a themed detail modal with the full-size screenshot and links.
 
 Screenshots in this README were captured with `tests/screenshots.cjs`-style
 Playwright runs and saved under `docs/screenshots/`.
-
-## Demo
-
-A short video demo of the portfolio and the Smart Notes project is available here:
-
-[Smart Notes Demo on Google Drive](https://drive.google.com/file/d/1oDVvvpkFYGTyySpinmodgiIdkLMcUvUS/view?usp=sharing)
