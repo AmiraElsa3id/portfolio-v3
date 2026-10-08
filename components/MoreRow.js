@@ -1,14 +1,39 @@
+"use client";
+
 import { Icon } from "@/components/ui/Icon";
+import { ProjectArt } from "./work/ProjectArt";
+import { useProject } from "./work/ProjectProvider";
 
 /*
-  MoreRow — one row of "More builds". Hover fills the row with accent and a
-  preview card (.mprev) follows the cursor. When build.image is set (a real
-  screenshot in public/images/) it shows the image; otherwise the mock-browser
-  wireframe is drawn from build.shot.
+  MoreRow — one row of "More builds".
+    • Clicking the row opens the project detail modal.
+    • The arrow on the right is a direct link to the live project (Ctrl/⌘-click,
+      or just a one-click shortcut for the impatient).
+    • Hover shows a preview whose art is the project's own illustration.
 */
 export function MoreRow({ build }) {
+  const { openProject } = useProject();
+
+  const project = {
+    id: build.id,
+    title: build.name,
+    image: build.image,
+    description: build.brief,
+    tags: build.stack.split(" · "),
+    links: [{ label: build.cta.replace(" ↗", ""), href: build.href }],
+    num: build.num,
+    context: build.context,
+  };
+
   return (
-    <a className="mrow" href={build.href} target="_blank" rel="noopener noreferrer">
+    <div className="mrow">
+      <button
+        type="button"
+        className="mrow__open"
+        aria-label={`View details for ${build.name}`}
+        onClick={() => openProject(project)}
+      />
+
       <span className="mono mrow__muted">{build.num}</span>
       <span className="mrow__name">{build.name}</span>
       <span className="mrow__muted mrow__hide-sm">{build.summary}</span>
@@ -17,37 +42,24 @@ export function MoreRow({ build }) {
       </span>
 
       <span className="mprev" aria-hidden="true">
-        {build.image ? (
-          <span className="mshot">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={build.image} alt={`${build.name} screenshot`} loading="lazy" />
-          </span>
-        ) : (
-          <span className="mshot" style={{ background: build.shot.bg, color: build.shot.color }}>
-            <span className="mbar">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span className="mwire">
-              <b />
-              <b />
-              <b />
-            </span>
-            <span className="mname" lang={build.shot.lang}>
-              {build.shot.name}
-            </span>
-          </span>
-        )}
+        <span className="mshot" style={{ background: build.shot.bg, color: build.shot.color }}>
+          <ProjectArt project={{ id: build.id, art: build.id, title: build.name }} />
+        </span>
         <span className="mbrief">
           <b>{build.cta}</b>
           {build.brief}
         </span>
       </span>
 
-      <span className="mrow__arrow">
+      <a
+        className="mrow__arrow"
+        href={build.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${build.name} in a new tab`}
+      >
         <Icon name="arrowRight" size={24} strokeWidth={1.8} />
-      </span>
-    </a>
+      </a>
+    </div>
   );
 }

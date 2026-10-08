@@ -4,8 +4,10 @@ import "./styles/components.css";
 import "./styles/sections.css";
 import "./styles/responsive.css";
 import "./styles/nextjs-additions.css";
+import "./styles/projects.css";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { SummaryProvider } from "@/components/summary/SummaryProvider";
+import { ProjectProvider } from "@/components/work/ProjectProvider";
 
 const SITE_DESCRIPTION =
   "Amera Mohammed — full-stack software engineer in Mansoura, Egypt. Laravel, Django and Node APIs behind React and Next.js front ends. Ranked 1st on ITI's Open Source track. Open to relocation.";
@@ -48,7 +50,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ThemeProvider>
-          <SummaryProvider>{children}</SummaryProvider>
+          <SummaryProvider>
+            <ProjectProvider>{children}</ProjectProvider>
+          </SummaryProvider>
         </ThemeProvider>
       </body>
     </html>

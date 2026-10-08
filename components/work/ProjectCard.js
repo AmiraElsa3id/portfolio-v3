@@ -1,14 +1,37 @@
-import { ProjectArt } from "./ProjectArt";
+"use client";
 
-/* ProjectCard — one featured card. The whole card is clickable via the title
-   link's ::after overlay ("stretched link"); .sublinks sit above it. */
+import { useRef } from "react";
+import { ProjectArt } from "./ProjectArt";
+import { useProject } from "./ProjectProvider";
+import { openProjectWithTransition } from "./open-project";
+
+/*
+  ProjectCard — one featured card.
+    • Clicking the card (anywhere) opens the detail modal; the shared-element
+      morph flies the visual into the modal's image.
+    • The title link and the .sublinks sit above the click layer, so anyone who
+      wants the live project can still click straight through.
+*/
 export function ProjectCard({ project, index, total }) {
   const num = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
   const mutedNum = project.visual === "surface";
+  const visualRef = useRef(null);
+  const { openProject } = useProject();
+
+  function open() {
+    openProjectWithTransition(openProject, { ...project, num }, visualRef.current);
+  }
 
   return (
     <article className="pcard">
-      <div className="pcard__visual" style={VISUALS[project.visual]}>
+      <button
+        type="button"
+        className="pcard__open"
+        aria-label={`View details for ${project.title}`}
+        onClick={open}
+      />
+
+      <div className="pcard__visual" ref={visualRef} style={VISUALS[project.visual]}>
         <span className="pcard__num" style={mutedNum ? { color: "var(--muted)" } : undefined}>
           {num}
         </span>

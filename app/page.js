@@ -11,6 +11,7 @@ import { Education } from "@/components/Education";
 import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { SummaryModal } from "@/components/summary/SummaryModal";
+import { ProjectModal } from "@/components/work/ProjectModal";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { PointerVars } from "@/components/interactions/PointerVars";
 import { ConsoleHello } from "@/components/interactions/ConsoleHello";
@@ -54,6 +55,7 @@ export default function Home() {
       </main>
 
       <SummaryModal />
+      <ProjectModal />
       <ChatWidget />
     </>
   );

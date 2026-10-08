@@ -34,7 +34,7 @@ All five global stylesheets are imported in order in `app/layout.js`.
 | 10. `.mag` | `components/ui/Magnetic.js` |
 | 11. `.band` / `.marquee` | `components/StackBand.js` |
 | 12. `.stat` | `components/Stats.js` |
-| 13. `.pcard` + card art | `components/work/Gallery.js`, `ProjectCard.js`, `ProjectArt.js` |
+| 13. `.pcard` + card art | `components/work/Gallery.js`, `ProjectCard.js`, `ProjectArt.js` (one bespoke art per project id), `ProjectModal.js`, `ProjectProvider.js` |
 | 14. `.mrow` + `.mprev` | `components/MoreBuilds.js`, `components/MoreRow.js` |
 | 15. `.scard` + art | `components/Principles.js` |
 | 16. `.box` / `.medal` / `.lbar` / `.rank` | `components/Education.js` |

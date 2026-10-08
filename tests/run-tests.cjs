@@ -346,6 +346,34 @@ const SECTIONS = [
         );
       }
 
+      // project detail modal
+      await page.evaluate(() => document.querySelector(".pcard__open").click());
+      await page.waitForTimeout(400);
+      const projectOpen = await page.locator('[data-js="project"]').isVisible();
+      const projectImg = await page.getAttribute('[data-js="project"] .pmodal__media img', "src");
+      rec(
+        vp,
+        "Project modal opens from a card",
+        projectOpen && !!projectImg,
+        projectImg || "no image",
+      );
+      await page.keyboard.press("Escape");
+      await page.waitForTimeout(300);
+      rec(
+        vp,
+        "Project modal closes on Esc",
+        !(await page.locator('[data-js="project"]').isVisible()),
+      );
+      await page.locator(".mrow__open").first().click();
+      await page.waitForTimeout(400);
+      rec(
+        vp,
+        "Project modal opens from a More-builds row",
+        await page.locator('[data-js="project"]').isVisible(),
+      );
+      await page.keyboard.press("Escape");
+      await page.waitForTimeout(300);
+
       // chat
       await page.click(".fab");
       await page.waitForTimeout(400);

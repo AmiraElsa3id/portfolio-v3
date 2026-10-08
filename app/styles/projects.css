@@ -1,0 +1,223 @@
+/* =====================================================================
+   projects.css — per-project art primitives + the project detail modal
+   ---------------------------------------------------------------------
+   Loaded after nextjs-additions.css. Adds:
+     • shared art primitives used by components/work/ProjectArt.js
+     • the click layers that open the project modal (card / row)
+     • the project modal itself, and its View Transitions morph
+   ===================================================================== */
+
+/* ---------- Shared art primitives ------------------------------------- */
+.art-cap {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.art-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 118px;
+  direction: rtl;
+}
+.art-bars i {
+  width: 16px;
+  background: currentColor;
+  border-radius: 3px;
+  transform-origin: 50% 100%;
+  animation: barUp 1.5s var(--out) infinite alternate;
+}
+.art-bars i:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.art-bars i:nth-child(3) {
+  animation-delay: 0.24s;
+}
+.art-bars i:nth-child(4) {
+  animation-delay: 0.36s;
+}
+.art-bars i:nth-child(5) {
+  animation-delay: 0.48s;
+}
+.art-bars i:nth-child(6) {
+  animation-delay: 0.6s;
+}
+@keyframes barUp {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.art-brutal {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: flex-start;
+}
+.art-brutal i {
+  display: block;
+  height: 13px;
+  background: currentColor;
+}
+
+.art-lines i {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: currentColor;
+  opacity: 0.5;
+  margin-bottom: 9px;
+}
+.art-lines i:last-child {
+  margin-bottom: 0;
+}
+
+.art-pulse {
+  animation: blink 1.4s steps(1) infinite;
+}
+
+/* ---------- Click layers: project card --------------------------------- */
+/* The whole card opens the modal; the title link and .sublinks sit above it
+   so "lazy" users can still jump straight to the live project. */
+.pcard__open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--r);
+  cursor: pointer;
+}
+.pcard__open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.pcard__link {
+  position: relative;
+  z-index: 2;
+}
+.pcard__link::after {
+  display: none; /* no longer a stretched link — the modal button does that */
+}
+.pcard__num,
+.pcard__visual .badge {
+  pointer-events: none;
+}
+
+/* ---------- Click layers: More-builds row ------------------------------ */
+.mrow__open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+.mrow__open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+.mrow__arrow {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Project detail modal --------------------------------------- */
+.pmodal {
+  width: min(1000px, 100%);
+  max-height: calc(100svh - 32px);
+  overflow: hidden auto;
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--ground);
+  color: var(--ink);
+  animation: panelIn 0.45s var(--out) both;
+}
+.pmodal:not([open]) {
+  display: none;
+}
+.pmodal::backdrop {
+  background: rgba(0, 0, 0, 0.62);
+  animation: fadeIn 0.25s both;
+}
+.pmodal__close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 3;
+  background: var(--ground);
+}
+.pmodal__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--ground-2);
+  overflow: hidden;
+}
+.pmodal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pmodal__num {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  z-index: 2;
+  padding: 5px 9px;
+  background: var(--ground);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  letter-spacing: var(--track-label);
+}
+.pmodal__body {
+  padding: clamp(22px, 3vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pmodal__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+.pmodal__desc {
+  color: var(--muted);
+  font-size: var(--fs-body-lg);
+  line-height: 1.55;
+  max-width: 68ch;
+}
+.pmodal__context {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  font-style: italic;
+}
+.pmodal__links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* ---------- View Transitions: card → modal morph ----------------------- */
+::view-transition-group(project-hero) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+::view-transition-old(project-hero),
+::view-transition-new(project-hero) {
+  animation-duration: 0.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(project-hero),
+  ::view-transition-old(project-hero),
+  ::view-transition-new(project-hero) {
+    animation: none !important;
+  }
+}
