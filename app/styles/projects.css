@@ -456,6 +456,15 @@
    Overrides the ported §14 in components.css (where .mshot was a fixed-height
    box for an SVG illustration): .mshot sizes to its content, .mbar .murl draw
    the address bar, and .mimg wipes the screenshot in top-down on hover.   */
+/* .mrow isolates its ::before accent fill, which makes each row a stacking
+   context — so the position:fixed preview, though z-indexed, was painted
+   inside the hovered row's context and the rows after it drew over the card
+   (their text bled through). Raise the hovered row above its siblings so the
+   preview sits on top. Kept at 1: high enough for the sibling rows, low enough
+   to stay under the sticky nav / chat. */
+.mrow:hover {
+  z-index: 1;
+}
 .mprev {
   width: 340px;
 }
