@@ -1,8 +1,10 @@
 /*
   projects.js — featured work + "more builds".
-  Ported from index.html. To add a real screenshot, set `image` to a file in
-  public/projects/ (e.g. "/projects/restomind.webp"); ProjectArt then renders
-  the <img> instead of the CSS illustration. Counters update automatically.
+  Ported from index.html. Each featured project has a `variant` (the staged
+  screenshot style for its card — see components/work/ProjectVisual.js) and an
+  `image` in public/images/ shown on the card and in the detail modal. Projects
+  without a variant fall back to the CSS illustration in ProjectArt.
+  Counters update automatically.
 */
 
 /**
@@ -15,8 +17,11 @@
  * @property {{label:string, href:string}[]} links
  * @property {string} [badge]
  * @property {"forecast"|"chat"|"rooms"|"bag"|"terminal"|"eye"} art
- * @property {"accent"|"ink"|"surface"|"accent2"|"terminal"} visual
+ * @property {"accent"|"ink"|"surface"|"accent2"|"terminal"|"brass"|"grid"} visual
+ * @property {"shot"|"bleed"|"key"|"peek"|"layers"|"device"} [variant]
+ *            staged screenshot style for the featured card (ProjectVisual)
  * @property {string} [image]
+ * @property {string} [imageAlt]   alt text for the screenshot
  */
 
 /** @type {Project[]} */
@@ -36,7 +41,10 @@ export const FEATURED_PROJECTS = [
     badge: "ITI GRAD PROJECT",
     art: "forecast",
     visual: "accent",
-    image: "/images/restomind.webp",
+    variant: "shot",
+    image: "/images/card-restomind.webp",
+    imageAlt:
+      "RestoMind home page: Arabic hero offering favourite meals at the best prices, with a cookie resting on a glass of milk",
   },
   {
     id: "ai-chat-clone",
@@ -54,7 +62,9 @@ export const FEATURED_PROJECTS = [
     ],
     art: "chat",
     visual: "ink",
-    image: "/images/ai-chat-clone.webp",
+    variant: "bleed",
+    image: "/images/card-ai-chat.webp",
+    imageAlt: "AI Chat Clone workspace with General, Coding, Reasoning, Creative and Image modes",
   },
   {
     id: "hotel-management",
@@ -71,8 +81,10 @@ export const FEATURED_PROJECTS = [
       { label: "Code", href: "https://github.com/AhmedMohO/hotel-system" },
     ],
     art: "rooms",
-    visual: "surface",
-    image: "/images/Hotel.webp",
+    visual: "brass",
+    variant: "key",
+    image: "/images/card-hotel.webp",
+    imageAlt: "Haven Luxury Hotel home page with Reserve your stay and Explore rooms buttons",
   },
   {
     id: "freshcart",
@@ -85,7 +97,10 @@ export const FEATURED_PROJECTS = [
     badge: "TAUGHT LIVE",
     art: "bag",
     visual: "accent2",
-    image: "/images/freshcart-next.webp",
+    variant: "peek",
+    image: "/images/card-freshcart.webp",
+    imageAlt:
+      "FreshCart storefront: Fresh Products Delivered to your Door banner, shipping and payment perks",
   },
   {
     id: "node-posts",
@@ -96,8 +111,11 @@ export const FEATURED_PROJECTS = [
     tags: ["Node.js", "Express", "MongoDB", "JWT"],
     links: [{ label: "Code", href: "https://github.com/AmiraElsa3id/Node-Posts" }],
     art: "terminal",
-    visual: "terminal",
-    image: "/images/node-posts-docs.webp",
+    visual: "grid",
+    variant: "layers",
+    image: "/images/card-node-api.webp",
+    imageAlt:
+      "NodeJS Posts API documentation: Express 5, MongoDB, JWT auth, 100 requests per 15 minutes rate limit, Kashier payments",
   },
   {
     id: "d-pathy",
@@ -113,8 +131,10 @@ export const FEATURED_PROJECTS = [
     ],
     badge: "GRADED EXCELLENT",
     art: "eye",
-    visual: "surface",
-    image: "/images/d-pathy.webp",
+    visual: "accent",
+    variant: "device",
+    image: "/images/card-dpathy.webp",
+    imageAlt: "D-Pathy welcome screen: your key tool to monitor eye health at home",
   },
 ];
 

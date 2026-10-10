@@ -15,6 +15,7 @@ table is the plan for splitting it into CSS Modules later, if you want to.
 | `assets/css/sections.css` | `app/styles/sections.css` | verbatim |
 | `assets/css/responsive.css` | `app/styles/responsive.css` | verbatim |
 | — | `app/styles/nextjs-additions.css` | the **only** deltas: `<dialog>` styling + flexible gallery height + `.ver` version switcher |
+| — | `app/styles/projects.css` | app-only: per-project card art (incl. the §13b screenshot variants) + the project detail modal |
 
 All five global stylesheets are imported in order in `app/layout.js`.
 
@@ -34,8 +35,8 @@ All five global stylesheets are imported in order in `app/layout.js`.
 | 10. `.mag` | `components/ui/Magnetic.js` |
 | 11. `.band` / `.marquee` | `components/StackBand.js` |
 | 12. `.stat` | `components/Stats.js` |
-| 13. `.pcard` + card art | `components/work/Gallery.js`, `ProjectCard.js`, `ProjectArt.js` (one bespoke art per project id), `ProjectModal.js`, `ProjectProvider.js` |
-| 14. `.mrow` + `.mprev` | `components/MoreBuilds.js`, `components/MoreRow.js` |
+| 13. `.pcard` + card art | `components/work/Gallery.js`, `ProjectCard.js` (visual roles), `ProjectVisual.js` (staged screenshot per `variant`), `ProjectArt.js` (fallback illustration), `ProjectModal.js`, `ProjectProvider.js` |
+| 14. `.mrow` + `.mprev` | `components/MoreBuilds.js`, `components/MoreRow.js` (hover preview: mini browser frame + real screenshot, per §14 in the new static) |
 | 15. `.scard` + art | `components/Principles.js` |
 | 16. `.box` / `.medal` / `.lbar` / `.rank` | `components/Education.js` |
 | 17. `.skcell` | `components/Skills.js` |
@@ -85,7 +86,7 @@ All five global stylesheets are imported in order in `app/layout.js`.
 |---|---|
 | name, links, location, hero copy | `content/profile.js` |
 | portfolio versions (v3 current, v2, v1 archived) | `content/versions.js` |
-| featured + more builds | `content/projects.js` |
+| featured + more builds | `content/projects.js` (featured cards carry `variant` + `image`/`imageAlt`) |
 | themes | `content/themes.js` |
 | stats + stack band | `content/stats.js` |
 | experience | `content/experience.js` |

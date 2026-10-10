@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { ProjectArt } from "./ProjectArt";
+import { ProjectVisual } from "./ProjectVisual";
 import { useProject } from "./ProjectProvider";
 import { openProjectWithTransition } from "./open-project";
 
@@ -14,7 +14,8 @@ import { openProjectWithTransition } from "./open-project";
 */
 export function ProjectCard({ project, index, total }) {
   const num = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-  const mutedNum = project.visual === "surface";
+  const visual = VISUALS[project.visual] || VISUALS.accent;
+  const mutedNum = project.visual === "surface" || project.visual === "grid";
   const visualRef = useRef(null);
   const { openProject } = useProject();
 
@@ -31,12 +32,16 @@ export function ProjectCard({ project, index, total }) {
         onClick={open}
       />
 
-      <div className="pcard__visual" ref={visualRef} style={VISUALS[project.visual]}>
+      <div
+        className={visual.className ? `pcard__visual ${visual.className}` : "pcard__visual"}
+        ref={visualRef}
+        style={visual.style}
+      >
         <span className="pcard__num" style={mutedNum ? { color: "var(--muted)" } : undefined}>
           {num}
         </span>
         {project.badge ? <span className="badge">{project.badge}</span> : null}
-        <ProjectArt project={project} />
+        <ProjectVisual project={project} />
       </div>
 
       <div className="pcard__body">
@@ -71,11 +76,24 @@ export function ProjectCard({ project, index, total }) {
   );
 }
 
-/* visual role → CSS (docs/10: accent | ink | surface | accent2 | terminal) */
+/* visual role → CSS (docs/10). Accent/ink/surface/accent2/terminal are the
+   flat roles; brass/grid are the screenshot-card roles (see ProjectVisual:
+   brass supplies the hotel's gold gradient, grid the surface + inset line). */
 const VISUALS = {
-  accent: { background: "var(--accent)", color: "var(--on-accent)" },
-  ink: { background: "var(--ink)", color: "var(--ground)" },
-  surface: { background: "var(--ground-2)", boxShadow: "inset 0 0 0 1px var(--line)" },
-  accent2: { background: "var(--accent-2)", color: "var(--on-accent-2)" },
-  terminal: { background: "#0B0B0B", color: "#D8D8D8" },
+  accent: { style: { background: "var(--accent)", color: "var(--on-accent)" } },
+  ink: { style: { background: "var(--ink)", color: "var(--ground)" } },
+  surface: {
+    style: { background: "var(--ground-2)", boxShadow: "inset 0 0 0 1px var(--line)" },
+  },
+  accent2: { style: { background: "var(--accent-2)", color: "var(--on-accent-2)" } },
+  terminal: { style: { background: "#0B0B0B", color: "#D8D8D8" } },
+  brass: { className: "v-brass" },
+  grid: {
+    className: "v-grid",
+    style: {
+      background: "var(--ground-2)",
+      color: "var(--ink)",
+      boxShadow: "inset 0 0 0 1px var(--line)",
+    },
+  },
 };

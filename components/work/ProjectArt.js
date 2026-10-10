@@ -5,10 +5,11 @@ import { Icon } from "@/components/ui/Icon";
   Each entry returns the full `.art` element so it can choose its own layout,
   exactly like the originals in index.html. Everything draws in `currentColor`
   (the card's visual colour) plus `--accent`/`--ground`, so it recolours with
-  the active palette. Real screenshots now live in the detail modal instead.
+  the active palette.
 
-  The six featured arts are the originals; the rest were added for the
-  "More builds" previews.
+  The six featured projects now use real screenshots staged by ProjectVisual,
+  so their arts below are a fallback rather than the default. The remaining
+  entries are the "More builds" hover previews.
 */
 
 export function ProjectArt({ project }) {

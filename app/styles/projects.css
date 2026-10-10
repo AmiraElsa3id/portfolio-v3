@@ -82,6 +82,449 @@
   animation: blink 1.4s steps(1) infinite;
 }
 
+/* ---------- Screenshot card variants (ProjectVisual) -------------------
+   Ported from the static site's components.css §13b. Every featured card
+   shows its real screenshot, but each is staged differently so the gallery
+   doesn't read as a row of identical cards:
+     .shot     RestoMind  tilted browser window, straightens on hover
+     .v-bleed  AI Chat    window runs off the card edge + floating bubbles
+     .v-hwin   + .v-key   Hotel   dark window on brass + a room key card
+     .v-peek   FreshCart  store rises out of the bottom edge
+     .v-docs   + .v-term  Node    docs window + floating terminal
+     .v-phone  D-Pathy    phone mockup with a scanning line
+   .art--static opts a card out of the generic .art zoom (the variants have
+   their own hover motion). This file loads after components.css, so these
+   rules win over .pcard:hover .art.                                    */
+.art--static {
+  transition: none;
+}
+.pcard:hover .art--static {
+  transform: none;
+}
+
+/* Tilted browser window (RestoMind) */
+.shot {
+  width: 86%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+  transform: rotate(-3deg);
+  transition: transform 0.8s var(--out);
+}
+.pcard:hover .shot {
+  transform: rotate(0) scale(1.03);
+}
+.shot__bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 10px;
+  background: #f1ece6;
+}
+.shot__bar i {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: #cfc6bd;
+}
+.shot__url {
+  margin-left: 8px;
+  flex: 1;
+  max-width: 60%;
+  height: 13px;
+  border-radius: 7px;
+  background: #fff;
+  font: 500 9px/13px var(--font-mono);
+  color: #8a7f75;
+  padding-left: 8px;
+}
+.shot img {
+  width: 100%;
+  height: auto;
+}
+
+/* Shared window chrome for the screenshot variants */
+.v-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 10px;
+  background: #1b1b22;
+  flex: none;
+}
+.v-bar i {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+}
+.v-bar--light {
+  background: #f1f1ee;
+}
+.v-bar--light i {
+  background: #c9c9c4;
+}
+.v-url {
+  margin-left: 8px;
+  flex: 1;
+  max-width: 62%;
+  height: 13px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.08);
+  font: 500 9px/13px var(--font-mono);
+  color: rgba(255, 255, 255, 0.6);
+  padding-left: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.v-bar--light .v-url {
+  background: #fff;
+  color: #8a8a85;
+}
+.v-bleed img,
+.v-peek img,
+.v-docs img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* AI Chat — bleed off the card edge + floating bubbles */
+.v-bleed {
+  position: absolute;
+  left: 16%;
+  top: 21%;
+  width: 96%;
+  border-radius: 10px 0 0 0;
+  overflow: hidden;
+  box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.35);
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-bleed {
+  transform: translate(-5%, -6%);
+}
+.v-bubble {
+  position: absolute;
+  z-index: 2;
+  left: 6%;
+  top: 15%;
+  max-width: 50%;
+  padding: 10px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 13px;
+  line-height: 1.35;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  animation: bob 4s ease-in-out infinite alternate;
+}
+.v-bubble--reply {
+  left: auto;
+  right: 7%;
+  top: auto;
+  bottom: 9%;
+  background: var(--accent-2);
+  color: var(--on-accent-2);
+  border-radius: 14px 14px 4px 14px;
+  animation-delay: -2s;
+}
+@keyframes bob {
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+/* Hotel — dark window on the hotel's brass + a room key card */
+.v-brass {
+  background: linear-gradient(150deg, #e2bf5e, #b8892e);
+  color: #1a1408;
+}
+.v-hwin {
+  position: absolute;
+  left: 6%;
+  top: 12%;
+  width: 76%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111a26;
+  box-shadow: 0 26px 50px rgba(60, 38, 0, 0.45);
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-hwin {
+  transform: translateY(-4%);
+}
+.v-hwin__img {
+  aspect-ratio: 16 / 9.4;
+  overflow: hidden;
+}
+.v-hwin__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  transform: scale(1.38);
+  transform-origin: 64% 52%;
+  transition: transform 1.2s var(--out);
+}
+.pcard:hover .v-hwin__img img {
+  transform: scale(1.3);
+}
+.v-key {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  bottom: 6%;
+  width: 38%;
+  aspect-ratio: 1.586;
+  padding: 7% 7.5%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto auto;
+  gap: 2px 8px;
+  background: radial-gradient(120% 90% at 100% 0%, #24344c, #0e1520 70%);
+  border: 1px solid rgba(226, 191, 94, 0.45);
+  color: #e2bf5e;
+  box-shadow:
+    0 22px 40px rgba(40, 24, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: rotate(9deg) translateY(8%);
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-key {
+  transform: rotate(-3deg) translateY(0);
+}
+.v-key__brand {
+  font:
+    italic 400 clamp(17px, 2.1vw, 26px) / 1 Georgia,
+    "Times New Roman",
+    serif;
+}
+.v-key__chip {
+  width: clamp(20px, 2.2vw, 28px);
+  aspect-ratio: 1.3;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #f3d98a, #b8892e);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.v-key__room,
+.v-key__paid {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: clamp(8px, 0.75vw, 10px);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.v-key__room {
+  color: #f4eedf;
+}
+.v-key__paid {
+  color: #9fd8a8;
+}
+.v-caption {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  z-index: 2;
+  max-width: 50%;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+/* FreshCart — store peeks out of the bottom edge, word behind */
+.v-peek {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: 0;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.18);
+  transform: translateY(18%);
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-peek {
+  transform: translateY(4%);
+}
+.v-word {
+  position: absolute;
+  left: 20px;
+  top: 46px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+}
+
+/* Node API — docs window + floating terminal (layered depth) */
+.v-grid {
+  background-image: radial-gradient(var(--line) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+.v-docs {
+  position: absolute;
+  right: -8%;
+  top: 17%;
+  width: 88%;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  box-shadow: -18px 24px 50px rgba(0, 0, 0, 0.35);
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-docs {
+  transform: translateX(-5%);
+}
+.v-term {
+  position: absolute;
+  left: 6%;
+  bottom: 8%;
+  z-index: 2;
+  width: 58%;
+  padding: 12px 14px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.75;
+  color: #d8d8d8;
+  transition: transform 1s var(--out);
+}
+.pcard:hover .v-term {
+  transform: translate(6px, -6px);
+}
+
+/* D-Pathy — the app in a phone that straightens on hover */
+.v-phone {
+  position: relative;
+  height: 76%;
+  aspect-ratio: 373 / 780;
+  border-radius: 26px;
+  border: 6px solid #111;
+  background: #111;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  transform: rotate(-7deg) translateY(9%);
+  transition: transform 1s var(--out);
+  color: var(--accent);
+}
+.pcard:hover .v-phone {
+  transform: rotate(0) translateY(5%);
+}
+.v-phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.v-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: #d4f53c;
+  box-shadow: 0 0 14px #d4f53c;
+  animation: vscan 2.8s var(--ease) infinite alternate;
+}
+@keyframes vscan {
+  to {
+    top: calc(100% - 2px);
+  }
+}
+.v-side {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+  line-height: 1.5;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- More-builds preview (new design) ---------------------------
+   The row-list preview card now holds the project's real screenshot in a
+   mini browser frame, ported from the static site's components.css §14.
+   Overrides the ported §14 in components.css (where .mshot was a fixed-height
+   box for an SVG illustration): .mshot sizes to its content, .mbar .murl draw
+   the address bar, and .mimg wipes the screenshot in top-down on hover.   */
+.mprev {
+  width: 340px;
+}
+.mshot {
+  position: relative;
+  display: block;
+  height: auto;
+  background: #0b0b0e;
+}
+.mshot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.mbar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 10px;
+  background: #17171c;
+}
+.mbar i {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  opacity: 1;
+}
+.murl {
+  margin-left: 8px;
+  flex: 1;
+  height: 14px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.07);
+  padding-left: 8px;
+  font: 500 9.5px/14px var(--font-mono);
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* screenshot wipes in top-down, then settles from a slight zoom */
+.mimg {
+  display: block;
+  height: 196px;
+  overflow: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.7s var(--out) 0.05s;
+}
+.mrow:hover .mimg {
+  clip-path: inset(0);
+}
+.mimg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  transform: scale(1.18);
+  transition: transform 1.2s var(--out);
+}
+.mrow:hover .mimg img {
+  transform: scale(1);
+}
+
 /* ---------- Click layers: project card --------------------------------- */
 /* The whole card opens the modal; the title link and .sublinks sit above it
    so "lazy" users can still jump straight to the live project. */
